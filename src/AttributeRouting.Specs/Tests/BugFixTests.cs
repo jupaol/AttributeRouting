@@ -15,6 +15,7 @@ using AttributeRouting.Web.Http.WebHost;
 using AttributeRouting.Web.Logging;
 using AttributeRouting.Web.Mvc;
 using MvcContrib.TestHelper;
+using MvcRouteTester;
 using NUnit.Framework;
 using UrlHelper = System.Web.Mvc.UrlHelper;
 
@@ -95,9 +96,11 @@ namespace AttributeRouting.Specs.Tests
             RouteTable.Routes.Clear();
             RouteTable.Routes.MapAttributeRoutes(config => config.AddRoutesFromController<StandardUsageController>());
 
-            "~/Index"
-                .ShouldMapTo<StandardUsageController>(
-                    x => x.Index());
+            //"~/Index"
+            //    .ShouldMapTo<StandardUsageController>(
+            //        x => x.Index());
+
+            RouteTable.Routes.ShouldMap("/Index").To<StandardUsageController>(x => x.Index());
         }
 
         [Test]
@@ -110,9 +113,12 @@ namespace AttributeRouting.Specs.Tests
 
             RouteTable.Routes.Cast<Route>().LogTo(Console.Out);
 
-            "~/BugFixes/Gallery/_CenterImage"
-                .ShouldMapTo<BugFixesController>(
-                    x => x.Issue43_OptionalParamsAreMucky(null, null, null, null));
+            //"~/BugFixes/Gallery/_CenterImage"
+            //    .ShouldMapTo<BugFixesController>(
+            //        x => x.Issue43_OptionalParamsAreMucky(null, null, null, null));
+
+            RouteTable.Routes.ShouldMap("~/BugFixes/Gallery/_CenterImage").To<BugFixesController>(
+                x => x.Issue43_OptionalParamsAreMucky(null, null, null, null));
         }
 
         [Test]
@@ -139,10 +145,15 @@ namespace AttributeRouting.Specs.Tests
 
             RouteTable.Routes.Cast<Route>().LogTo(Console.Out);
 
-            "~/en/cms/home".ShouldMapTo<CulturePrefixController>(x => x.Index());
-            Assert.That("~/en/cms/inicio".Route(), Is.Null);
-            Assert.That("~/pt/cms/home".Route(), Is.Null);
-            "~/pt/cms/inicio".ShouldMapTo<CulturePrefixController>(x => x.Index());
+            //"~/en/cms/home".ShouldMapTo<CulturePrefixController>(x => x.Index());
+            //Assert.That("~/en/cms/inicio".Route(), Is.Null);
+            //Assert.That("~/pt/cms/home".Route(), Is.Null);
+            //"~/pt/cms/inicio".ShouldMapTo<CulturePrefixController>(x => x.Index());
+
+            RouteTable.Routes.ShouldMap("~/en/cms/home").To<CulturePrefixController>(x => x.Index());
+            RouteTable.Routes.ShouldMap("~/en/cms/inicio").ToNoRoute();
+            RouteTable.Routes.ShouldMap("~/pt/cms/home").ToNoRoute();
+            RouteTable.Routes.ShouldMap("~/pt/cms/inicio").To<CulturePrefixController>(x => x.Index());
         }
 
 		[Test]
@@ -152,10 +163,13 @@ namespace AttributeRouting.Specs.Tests
 			RouteTable.Routes.Clear();
 			RouteTable.Routes.MapAttributeRoutes(config => config.AddRoutesFromController<AsyncActionController>());
 
-			"~/WithAsync/Synchronous".ShouldMapTo<AsyncActionController>(x => x.Test1());
-			var asyncRouteData = "~/WithAsync/NotSynchronous".Route();
-			asyncRouteData.Values["controller"].ShouldEqual("AsyncAction", "Asynchronous route does not map to the AsyncActionController.");
-			asyncRouteData.Values["action"].ShouldEqual("Test2", "Asynchronous route does not map to the correct action method.");
+            //"~/WithAsync/Synchronous".ShouldMapTo<AsyncActionController>(x => x.Test1());
+            //var asyncRouteData = "~/WithAsync/NotSynchronous".Route();
+            //asyncRouteData.Values["controller"].ShouldEqual("AsyncAction", "Asynchronous route does not map to the AsyncActionController.");
+            //asyncRouteData.Values["action"].ShouldEqual("Test2", "Asynchronous route does not map to the correct action method.");
+
+            RouteTable.Routes.ShouldMap("~/WithAsync/Synchronous").To<AsyncActionController>(x => x.Test1());
+            RouteAssert.GeneratesActionUrl(RouteTable.Routes, "/WithAsync/NotSynchronous", "Test2", "AsyncAction");
 		}
 
         [Test]
