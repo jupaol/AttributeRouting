@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AttributeRouting.Web</RootNamespace>
-    <AssemblyName>AttributeRouting.Web</AssemblyName>
+    <AssemblyName>IGS.AttributeRouting.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
@@ -33,7 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\AttributeRouting.Web.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\IGS.AttributeRouting.Web.xml</DocumentationFile>
     <NoWarn>1591, 1587</NoWarn>
   </PropertyGroup>
   <PropertyGroup>

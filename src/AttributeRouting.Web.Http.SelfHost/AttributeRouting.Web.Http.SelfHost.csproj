@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AttributeRouting.Web.Http.SelfHost</RootNamespace>
-    <AssemblyName>AttributeRouting.Web.Http.SelfHost</AssemblyName>
+    <AssemblyName>IGS.AttributeRouting.Web.Http.SelfHost</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -33,7 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\AttributeRouting.Web.Http.SelfHost.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\IGS.AttributeRouting.Web.Http.SelfHost.xml</DocumentationFile>
     <NoWarn>1591, 1587</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
