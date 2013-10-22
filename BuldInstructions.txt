@@ -1,0 +1,2 @@
+.\psake.ps1 Default 3.5.6.90
+.\psake.ps1 Package 3.5.6.90
